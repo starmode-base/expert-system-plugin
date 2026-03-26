@@ -10,7 +10,7 @@ Query real-time macroeconomic data through the Expert System API using natural l
 ## Rules
 
 - **If the API returns an error or empty results**, tell the user plainly rather than guessing.
-- **If no API key is configured**, let the user know: "To use Expert System, you'll need a free API key. Sign up at [expert-system.starmode.dev/account/api-keys](https://expert-system.starmode.dev/account/api-keys) — it takes less than a minute." Do not attempt the request without a key.
+- **If no API key is configured**, tell the user they need an API key to use Expert System and can get one at [expert-system.starmode.dev/account/api-keys](https://expert-system.starmode.dev/account/api-keys). Do not attempt the request without a key.
 - **If the API returns a 401**, the key may be invalid or expired. Direct the user to [expert-system.starmode.dev/account/api-keys](https://expert-system.starmode.dev/account/api-keys) to check or regenerate their key.
 - **Cross-reference with research.** For deeper context on macro trends, also use the `research` skill to find related expert takeaways and analysis.
 
