@@ -15,17 +15,13 @@ Search and browse intelligence from the Expert System API. The system ingests pu
 
 ## Authentication
 
-All requests require a Bearer token. Users can get their API key at: https://expert-system.starmode.dev/account/api-keys
+All requests require a Bearer token. Get an API key at: https://expert-system.starmode.dev/account/api-keys
 
-```json5
-// ~/.claude/plugins/expert-system/env.json
-// or via skill env in ~/.openclaw/openclaw.json
-{
-  "EXPERT_SYSTEM_API_KEY": "esak_..."
-}
-```
+**Claude Code plugin users:** Your API key is configured automatically when you enable the plugin. The key is available as `${user_config.api_key}`.
 
-Include on all requests: `Authorization: Bearer $EXPERT_SYSTEM_API_KEY`
+**All other agents:** Set the `EXPERT_SYSTEM_API_KEY` environment variable in your shell profile or `.env` file.
+
+Include on all requests: `Authorization: Bearer <api_key>`
 
 ## Workflows
 

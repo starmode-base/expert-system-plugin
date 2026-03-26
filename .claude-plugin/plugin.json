@@ -8,5 +8,11 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/starmode-base/expert-system-plugin"
+  },
+  "userConfig": {
+    "api_key": {
+      "description": "Expert System API key (get one at https://expert-system.starmode.dev/account/api-keys)",
+      "sensitive": true
+    }
   }
 }
