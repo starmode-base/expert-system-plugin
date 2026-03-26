@@ -1,0 +1,11 @@
+{
+  "name": "Expert System",
+  "plugins": [
+    {
+      "name": "expert-system",
+      "source": "github://starmode-base/expert-system-plugin",
+      "version": "1.0.0",
+      "description": "Research intelligence, company financials, and macroeconomic data for Claude Code"
+    }
+  ]
+}
