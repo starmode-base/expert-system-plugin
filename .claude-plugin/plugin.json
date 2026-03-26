@@ -1,0 +1,12 @@
+{
+  "name": "expert-system",
+  "description": "Search curated research, earnings transcripts, and AI/business intelligence. Query real-time macroeconomic and company financial data with natural language.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Starmode"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/starmode-base/expert-system-plugin"
+  }
+}
