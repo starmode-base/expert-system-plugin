@@ -39,9 +39,9 @@ When the user asks about a specific topic, company, technology, or event:
 
 When browsing for what's new or running as a recurring job:
 
-1. **Research insights** — `GET /research` for AI-synthesized insights (highest signal).
-2. **Recent takeaways** — `GET /takeaways/recent` for the latest raw takeaways.
-3. **Drill down** — Fetch by ID to go deeper on anything interesting.
+1. **Recent takeaways** — `GET /takeaways/recent` for the latest takeaways, including each source's `publicationDate`.
+2. **Search related topics** — `GET /takeaways/search` with `recent=true` to find relevant recent context.
+3. **Drill down** — Fetch selected takeaway IDs in one `GET /takeaways?ids=...` request.
 
 ## API Reference
 
@@ -67,19 +67,13 @@ Base URL: `https://expert-system.starmode.dev/api/v1`
 |-------|----------|---------|-------|
 | `limit` | no | 10 | Max 100 |
 
+Returns lightweight takeaway objects with `id`, `documentId`, `title`, `summary`, and `publicationDate`.
+
 ### Documents by ID — `GET /documents`
 
 | Param | Required | Notes |
 |-------|----------|-------|
 | `ids` | yes | Comma-separated IDs, max 50 |
-
-### Research Insights — `GET /research`
-
-| Param | Required | Default | Notes |
-|-------|----------|---------|-------|
-| `limit` | no | 4 | Max 100 |
-| `date` | no | — | Filter to single day (YYYY-MM-DD) |
-| `cursor` | no | — | Pagination cursor from previous response |
 
 ## Output
 
