@@ -13,7 +13,7 @@ Search and browse intelligence from the Expert System API. The system ingests pu
 - **If the API returns an error or empty results**, tell the user plainly rather than guessing.
 - **If no API key is configured**, tell the user they need an API key to use Expert System and can get one at [expert-system.starmode.dev/account/api-keys](https://expert-system.starmode.dev/account/api-keys). Do not attempt the request without a key.
 - **If the API returns a 401**, the key may be invalid or expired. Direct the user to [expert-system.starmode.dev/account/api-keys](https://expert-system.starmode.dev/account/api-keys) to check or regenerate their key.
-- **Cross-reference with other skills.** If the user's question would benefit from financial or macroeconomic data, use the `financials` or `macro` skills alongside this one.
+- **Cross-reference with other skills.** If the user's question would benefit from macroeconomic data, use the `macro` skill alongside this one.
 
 ## Authentication
 
