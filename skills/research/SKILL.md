@@ -33,7 +33,7 @@ When the user asks about a specific topic, company, technology, or event:
 
 1. **Search** — `GET /takeaways/search` with a natural-language query. Use `recent=true` to favor newer content. Returns titles, summaries, and IDs.
 2. **Read takeaways** — `GET /takeaways?ids=...` to get full text, references, and document URLs.
-3. **Read sources** (if needed) — `GET /documents?ids=...` for the full source text.
+3. **Read sources** (if needed) — `GET /documents/{documentId}/content` for bounded source text. Read text from `item.content.text` and follow `item.content.nextOffset` only while `item.content.truncated` is true and more context is useful. Use `GET /documents?ids=...` only when complete source records are specifically needed.
 
 ### News Briefing
 
@@ -49,32 +49,43 @@ Base URL: `https://expert-system.starmode.dev/api/v1`
 
 ### Semantic Search — `GET /takeaways/search`
 
-| Param | Required | Default | Notes |
-|-------|----------|---------|-------|
-| `query` | yes | — | Natural-language search string |
-| `limit` | no | 10 | Max 100 |
-| `recent` | no | — | `true` for time-weighted reranking |
+| Param    | Required | Default | Notes                              |
+| -------- | -------- | ------- | ---------------------------------- |
+| `query`  | yes      | —       | Natural-language search string     |
+| `limit`  | no       | 10      | Max 100                            |
+| `recent` | no       | —       | `true` for time-weighted reranking |
 
 ### Takeaways by ID — `GET /takeaways`
 
-| Param | Required | Notes |
-|-------|----------|-------|
-| `ids` | yes | Comma-separated IDs, max 50 |
+| Param | Required | Notes                       |
+| ----- | -------- | --------------------------- |
+| `ids` | yes      | Comma-separated IDs, max 50 |
 
 ### Recent Takeaways — `GET /takeaways/recent`
 
-| Param | Required | Default | Notes |
-|-------|----------|---------|-------|
-| `limit` | no | 10 | Max 100 |
+| Param   | Required | Default | Notes   |
+| ------- | -------- | ------- | ------- |
+| `limit` | no       | 10      | Max 100 |
 
 Returns lightweight takeaway objects with `id`, `documentId`, `title`, `summary`, and `publicationDate`.
 
+Search and recent results also include a `document` metadata object. Use the returned IDs with `GET /takeaways`; do not assume lightweight results contain full takeaway text or inline references.
+
 ### Documents by ID — `GET /documents`
 
-| Param | Required | Notes |
-|-------|----------|-------|
-| `ids` | yes | Comma-separated IDs, max 50 |
+| Param | Required | Notes                       |
+| ----- | -------- | --------------------------- |
+| `ids` | yes      | Comma-separated IDs, max 50 |
+
+### Bounded Document Content — `GET /documents/{documentId}/content`
+
+| Param    | Required | Default | Notes                                                    |
+| -------- | -------- | ------- | -------------------------------------------------------- |
+| `offset` | no       | 0       | Character offset; use the prior `nextOffset` to continue |
+| `limit`  | no       | 12000   | Character count, capped at 30000                         |
+
+The response is `{ "item": { ...documentMetadata, "content": { "text", "offset", "nextOffset", "totalCharacters", "truncated" } } }`.
 
 ## Output
 
-All endpoints return JSON. Parse and format results clearly for the user's question.
+All endpoints return JSON. Preserve the API's ordering, parse response envelopes before presenting results, and cite the original `document.link` for source-backed claims. Use the takeaway `url` only when linking to the Expert System takeaway page is useful in addition to the original source.

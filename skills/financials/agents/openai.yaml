@@ -1,0 +1,4 @@
+interface:
+  display_name: "Company Financials"
+  short_description: "Query normalized SEC company financials"
+  default_prompt: "Use $financials to analyze a company’s reported financial metrics."
