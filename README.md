@@ -1,6 +1,6 @@
 # Expert System Plugin for Claude Code
 
-A Claude Code plugin that gives Claude access to real-time research intelligence and macroeconomic indicators.
+A Claude Code plugin that gives Claude access to real-time research intelligence, macroeconomic indicators, and normalized SEC company financials.
 
 ## Skills
 
@@ -8,8 +8,9 @@ A Claude Code plugin that gives Claude access to real-time research intelligence
 |-------|---------|-------------|
 | **Research** | `/expert-system:research` | Search recent news, analysis, and insights from tech blogs, X posts, podcast transcripts, earnings calls, and expert commentary |
 | **Macro** | `/expert-system:macro` | Query macroeconomic indicators — GDP, unemployment, inflation, interest rates, housing, consumer sentiment |
+| **Financials** | `/expert-system:financials` | Query deterministic, normalized SEC company financial metrics by ticker or CIK |
 
-Both skills also trigger automatically based on context — you don't need to invoke them by name.
+All three skills also trigger automatically based on context — you don't need to invoke them by name.
 
 ## Install
 
@@ -34,6 +35,7 @@ Both skills also trigger automatically based on context — you don't need to in
 - "What's happening with Nvidia?"
 - "Give me a news briefing on AI development"
 - "What's the current unemployment rate and how has it trended?"
+- "Compare Apple's quarterly revenue and net income with SEC provenance"
 
 ## Links
 

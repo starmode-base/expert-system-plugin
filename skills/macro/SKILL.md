@@ -5,7 +5,7 @@ description: "Query real-time macroeconomic data including GDP, unemployment, in
 
 # Macroeconomic Data
 
-Query real-time macroeconomic data through the Expert System API using natural language.
+Query real-time macroeconomic data through the Expert System API by selecting supported FRED series and retrieving structured observations.
 
 ## Rules
 
@@ -26,9 +26,13 @@ Include on all requests: `Authorization: Bearer <api_key>`
 
 ## Workflow
 
-1. **Query** — `POST /query/macro` with a natural-language question. The system queries the relevant economic data series.
-2. **Present** — Format clearly, highlighting trends and the specific indicators the user asked about.
-3. **Enrich** — Use the `research` skill to search for related expert analysis if it would add value.
+1. **Resolve** — Identify the appropriate FRED series. If the series ID is uncertain, call `GET /macro/series?query=...` to search the supported catalog.
+2. **Fetch** — Call `POST /macro/observations` with one series for simple questions or a batch for comparisons.
+3. **Check partial failures** — Inspect both `items` and `errors`; a batch can return successful series and per-series errors together with status 200.
+4. **Present** — Format clearly, highlighting trends, observation dates, units, transformations, and the specific indicators the user asked about.
+5. **Enrich** — Use the `research` skill to search for related expert analysis if it would add value.
+
+Keep each series at its native frequency unless the comparison requires a common lower frequency. Never imply that the API interpolates, forward-fills, or aligns observations. For mixed-frequency comparisons, either discuss each native timeline explicitly or request lower-frequency aggregation with `avg`, `sum`, or `eop`.
 
 Available data: GDP & real economy, labor market (unemployment, payrolls, JOLTS), inflation (CPI, PCE, trimmed-mean), wages & income, monetary policy & Fed liquidity, interest rates & yield curve, credit & financial stress, housing (starts, permits, prices, mortgage rates), and consumer sentiment.
 
@@ -36,8 +40,40 @@ Available data: GDP & real economy, labor market (unemployment, payrolls, JOLTS)
 
 Base URL: `https://expert-system.starmode.dev/api/v1`
 
-### Macroeconomic Data — `POST /query/macro`
+### Series Catalog — `GET /macro/series`
 
-**Body:** `{ "query": "what is the current unemployment rate" }`
+Optional query parameter: `query`. Search results include the series ID, description, category, native frequency, native units, and FRED source URL.
 
-Returns structured economic data as JSON. Parse and format results clearly for the user's question.
+The response envelope is `{ "items": [...] }`. Use the returned canonical series IDs in observation requests rather than guessing unsupported IDs.
+
+### Observations — `POST /macro/observations`
+
+**Single-series body:**
+
+```json
+{
+  "series": [{ "id": "UNRATE", "lastN": 12, "units": "lin" }]
+}
+```
+
+**Mixed-frequency comparison:**
+
+```json
+{
+  "series": [
+    { "id": "UNRATE", "lastN": 12 },
+    {
+      "id": "ICSA",
+      "lastN": 12,
+      "frequency": "m",
+      "aggregationMethod": "avg"
+    }
+  ]
+}
+```
+
+Send one to five unique series. Each series accepts either `lastN` (default 12, maximum 120) or both `startDate` and `endDate`. Set `units` to one of `lin`, `chg`, `ch1`, `pch`, `pc1`, `pca`, `cch`, or `cca`. To request a lower frequency, set `frequency` and `aggregationMethod` (`avg`, `sum`, or `eop`); upsampling is rejected.
+
+Transformation semantics: `lin` returns levels; `chg` returns period change; `ch1` returns year-ago change; `pch` returns period percent change; `pc1` returns year-ago percent change; `pca` returns compounded annualized percent change; `cch` and `cca` return continuously compounded period and annualized changes.
+
+The response contains `asOf`, successful `items`, and per-series `errors`. Each item includes `seriesId`, description, source URL, native and returned frequency, native units, transformation, and dated numeric observations. Never treat `asOf` as the date of every observation; report the actual observation dates.
