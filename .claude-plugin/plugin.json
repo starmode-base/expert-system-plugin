@@ -1,18 +1,13 @@
 {
   "name": "expert-system",
-  "description": "Search curated research and query real-time macroeconomic data and normalized SEC company financials.",
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "description": "Curated research, FRED macroeconomic data, and SEC company financials with source provenance.",
   "author": {
-    "name": "Starmode"
+    "name": "STAR MODE",
+    "url": "https://github.com/starmode-base"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/starmode-base/expert-system-plugin"
-  },
-  "userConfig": {
-    "api_key": {
-      "description": "Expert System API key (get one at https://expert-system.starmode.dev/account/api-keys)",
-      "sensitive": true
-    }
-  }
+  "homepage": "https://expert-system.starmode.dev",
+  "repository": "https://github.com/starmode-base/expert-system-plugin",
+  "keywords": ["research", "macroeconomics", "financials", "fred", "sec"],
+  "skills": "./skills/"
 }

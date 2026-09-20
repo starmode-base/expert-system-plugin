@@ -1,7 +1,7 @@
 interface:
-  display_name: "Company Financials"
-  short_description: "SEC company metrics with filing provenance"
-  default_prompt: "Use $financials to compare Apple revenue and operating cash flow."
+  display_name: "Macroeconomic Data"
+  short_description: "FRED economic observations and trends"
+  default_prompt: "Use $macro to compare recent US inflation and unemployment."
 dependencies:
   tools:
     - type: "mcp"

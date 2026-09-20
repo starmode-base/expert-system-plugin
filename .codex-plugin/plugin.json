@@ -1,0 +1,30 @@
+{
+  "name": "expert-system",
+  "version": "2.0.0",
+  "description": "Curated research, FRED macroeconomic data, and SEC company financials with source provenance.",
+  "author": {
+    "name": "STAR MODE",
+    "url": "https://github.com/starmode-base"
+  },
+  "homepage": "https://expert-system.starmode.dev",
+  "repository": "https://github.com/starmode-base/expert-system-plugin",
+  "keywords": ["research", "macroeconomics", "financials", "fred", "sec"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Expert System",
+    "shortDescription": "Research, macro data, and company financials",
+    "longDescription": "Curated research, FRED macroeconomic data, and SEC company financials with source provenance.",
+    "developerName": "STAR MODE",
+    "category": "Productivity",
+    "websiteURL": "https://expert-system.starmode.dev",
+    "defaultPrompt": [
+      "Find recent research about AI infrastructure.",
+      "Show the latest US inflation observations.",
+      "Compare Apple revenue and operating cash flow."
+    ],
+    "capabilities": ["Read"],
+    "privacyPolicyURL": "https://expert-system.starmode.dev/privacy.html",
+    "termsOfServiceURL": "https://expert-system.starmode.dev/terms.html"
+  }
+}

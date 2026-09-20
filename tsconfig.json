@@ -1,0 +1,13 @@
+{
+  "include": ["tests/**/*.ts"],
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "target": "ES2022",
+    "types": ["node"],
+    "skipLibCheck": true,
+    "noEmit": true
+  }
+}
