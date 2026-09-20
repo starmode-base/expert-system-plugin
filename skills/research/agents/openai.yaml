@@ -1,7 +1,7 @@
 interface:
-  display_name: "Company Financials"
-  short_description: "SEC company metrics with filing provenance"
-  default_prompt: "Use $financials to compare Apple revenue and operating cash flow."
+  display_name: "Research"
+  short_description: "Curated research with source attribution"
+  default_prompt: "Use $research to summarize recent AI infrastructure research."
 dependencies:
   tools:
     - type: "mcp"

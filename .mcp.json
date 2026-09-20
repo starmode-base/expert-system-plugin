@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "expert-system": {
+      "type": "http",
+      "url": "https://expert-system.starmode.dev/api/mcp"
+    }
+  }
+}

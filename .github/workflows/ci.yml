@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  # The server repository does not run this check, so drift originating there
+  # would otherwise go unnoticed until the next plugin change or release.
+  schedule:
+    - cron: "17 11 * * *"
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out plugin
+        uses: actions/checkout@v4
+        with:
+          path: expert-system-plugin
+
+      # The cross-repository contract test reads the server's tool registry,
+      # hosted marketplace copy, and policy pages. Both repositories are public,
+      # so the default token is sufficient.
+      - name: Check out server
+        uses: actions/checkout@v4
+        with:
+          repository: starmode-base/expert-system
+          path: expert-system
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - run: bun install --frozen-lockfile
+        working-directory: expert-system-plugin
+
+      - run: bun run typecheck
+        working-directory: expert-system-plugin
+
+      - run: bun run lint
+        working-directory: expert-system-plugin
+
+      - run: bun run format:check
+        working-directory: expert-system-plugin
+
+      # Without EXPERT_SYSTEM_SERVER_ROOT the cross-repository test is silently
+      # skipped, so a green run here would not prove synchronization.
+      - run: bun run plugin:check
+        working-directory: expert-system-plugin
+        env:
+          EXPERT_SYSTEM_SERVER_ROOT: ${{ github.workspace }}/expert-system

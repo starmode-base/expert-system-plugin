@@ -1,0 +1,24 @@
+{
+  "name": "expert-system-plugin",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "plugin:check": "vitest run tests/plugin.test.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --max-warnings 0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.23.0",
+    "@types/node": "^22.13.11",
+    "eslint": "^9.23.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.27.0",
+    "vitest": "^3.0.9",
+    "yaml": "^2.9.1",
+    "zod": "^4.3.5"
+  }
+}
