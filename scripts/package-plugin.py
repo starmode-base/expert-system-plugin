@@ -7,7 +7,8 @@ from zipfile import ZIP_DEFLATED, ZipFile
 ROOT = Path(__file__).resolve().parents[1]
 FILES = [
     "plugin.json", "mcp.json", ".mcp.json", ".claude-plugin/plugin.json",
-    ".claude-plugin/marketplace.json", ".codex-plugin/plugin.json", "README.md",
+    ".claude-plugin/marketplace.json", ".codex-plugin/plugin.json",
+    ".agents/plugins/marketplace.json", "README.md",
     "documents/plugin-release.md",
 ]
 for skill in ("research", "macro", "financials"):

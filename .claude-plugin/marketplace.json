@@ -1,8 +1,8 @@
 {
   "name": "expert-system",
   "owner": {
-    "name": "STAR MODE",
-    "url": "https://github.com/starmode-base"
+    "name": "STARMODE",
+    "url": "https://www.starmode.dev/"
   },
   "plugins": [
     {

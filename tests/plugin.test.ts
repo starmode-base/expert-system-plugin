@@ -12,7 +12,10 @@ const identity = z.object({
   name: z.literal("expert-system"),
   version: z.literal("2.0.0"),
   description: z.string().min(1),
-  author: z.object({ name: z.string().min(1), url: z.url() }),
+  author: z.object({
+    name: z.literal("STARMODE"),
+    url: z.literal("https://www.starmode.dev/"),
+  }),
   homepage: z.url(),
   repository: z.literal(
     "https://github.com/starmode-base/expert-system-plugin",
@@ -23,7 +26,7 @@ const presentation = z.object({
   displayName: z.string().min(1),
   shortDescription: z.string().min(1),
   longDescription: z.string().min(1),
-  developerName: z.string().min(1),
+  developerName: z.literal("STARMODE"),
   category: z.string().min(1),
   capabilities: z.array(z.literal("Read")),
   websiteURL: z.url(),
@@ -130,6 +133,35 @@ describe("distributed plugin contract", () => {
       .strict()
       .parse(json(".claude-plugin/marketplace.json"));
     expect(marketplace.plugins[0]?.description).toBe(manifest.description);
+    expect(marketplace.owner).toEqual(manifest.author);
+  });
+
+  it("makes the repository root installable as a Codex plugin", () => {
+    const marketplace = z
+      .object({
+        name: z.literal("expert-system"),
+        interface: z.object({ displayName: z.literal("Expert System") }),
+        plugins: z
+          .array(
+            z.object({
+              name: z.literal("expert-system"),
+              source: z.object({
+                source: z.literal("local"),
+                path: z.literal("./"),
+              }),
+              policy: z.object({
+                installation: z.literal("AVAILABLE"),
+                authentication: z.literal("ON_INSTALL"),
+              }),
+              category: z.literal("Productivity"),
+            }),
+          )
+          .length(1),
+      })
+      .parse(json(".agents/plugins/marketplace.json"));
+    expect(marketplace.plugins[0]?.name).toBe(
+      portable.parse(json("plugin.json")).name,
+    );
   });
 
   it("exposes three routable skills with resolvable MCP dependencies", () => {
