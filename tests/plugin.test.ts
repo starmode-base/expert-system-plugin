@@ -12,7 +12,10 @@ const identity = z.object({
   name: z.literal("expert-system"),
   version: z.literal("2.0.0"),
   description: z.string().min(1),
-  author: z.object({ name: z.string().min(1), url: z.url() }),
+  author: z.object({
+    name: z.literal("STARMODE"),
+    url: z.literal("https://www.starmode.dev/"),
+  }),
   homepage: z.url(),
   repository: z.literal(
     "https://github.com/starmode-base/expert-system-plugin",
@@ -23,7 +26,7 @@ const presentation = z.object({
   displayName: z.string().min(1),
   shortDescription: z.string().min(1),
   longDescription: z.string().min(1),
-  developerName: z.string().min(1),
+  developerName: z.literal("STARMODE"),
   category: z.string().min(1),
   capabilities: z.array(z.literal("Read")),
   websiteURL: z.url(),
