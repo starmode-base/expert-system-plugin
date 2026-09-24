@@ -31,41 +31,16 @@ Update with `/plugin marketplace update expert-system` then `/plugin update expe
 
 ## Codex installation
 
-Clone the desired release of this repository. Register a local marketplace pointing at that checkout using the bundled plugin-creator skill, or create this temporary marketplace layout:
-
-```text
-expert-system-marketplace/
-  .agents/plugins/marketplace.json
-  plugins/expert-system/  # plugin files from the release archive
-```
-
-Use this catalog in `.agents/plugins/marketplace.json`:
-
-```json
-{
-  "name": "expert-system-local",
-  "interface": { "displayName": "Expert System" },
-  "plugins": [
-    {
-      "name": "expert-system",
-      "source": { "source": "local", "path": "./plugins/expert-system" },
-      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
-      "category": "Productivity"
-    }
-  ]
-}
-```
-
-Register and install it using a Codex CLI with plugin support:
+Register the repository marketplace and install the plugin using a Codex CLI with plugin support:
 
 ```sh
-codex plugin marketplace add /absolute/path/to/expert-system-marketplace
-codex plugin add expert-system@expert-system-local
+codex plugin marketplace add starmode-base/expert-system-plugin --ref main
+codex plugin add expert-system@expert-system
 ```
 
-Alternatively, select that marketplace in the Codex Plugins UI and install Expert System. Complete its OAuth sign-in prompt, then start a new task so the skills and connection are loaded. Ask naturally or select the research, macro, or financials skill. The three summaries support routing; the host discovers tool schemas as needed rather than this plugin eagerly loading them.
+Alternatively, select that marketplace in the Codex Plugins UI and install Expert System. Complete its OAuth sign-in prompt, then start a new task so the skills and connection are loaded. Ask naturally or select the research, macro, or financials skill. The three summaries support routing; the host discovers tool schemas as needed rather than this plugin eagerly loading them. For a release candidate, replace `main` with the candidate tag in the marketplace command.
 
-To update, replace the plugin directory with the new release, refresh the marketplace with `codex plugin marketplace upgrade expert-system-local`, and reinstall from the Plugins UI (or remove/add using the CLI). Start a new task. Remove with `codex plugin remove expert-system@expert-system-local`; remove an unused marketplace with `codex plugin marketplace remove expert-system-local`.
+To update, refresh the marketplace with `codex plugin marketplace upgrade expert-system` and reinstall from the Plugins UI (or remove/add using the CLI). Start a new task. Remove with `codex plugin remove expert-system@expert-system`; remove an unused marketplace with `codex plugin marketplace remove expert-system`.
 
 ## Sign-in and troubleshooting
 
@@ -77,7 +52,7 @@ For a v1 upgrade, uninstall the old plugin, remove its saved plugin API-key conf
 
 ## Plugin development and release
 
-The root `plugin.json` and `mcp.json` follow the [portable Agent Plugins format](https://developers.openai.com/plugins/build/plugins). `.claude-plugin/` and `.codex-plugin/` provide client compatibility; both use the same `skills/`. Skill MCP dependencies follow [OpenAI's skill guidance](https://developers.openai.com/plugins/build/skills). The server repository hosts `public/marketplace.json` as a compatibility copy of this repository’s canonical Claude marketplace. Privacy and terms pages are also hosted by the server.
+The root `plugin.json` and `mcp.json` follow the [portable Agent Plugins format](https://developers.openai.com/plugins/build/plugins). `.claude-plugin/` and `.codex-plugin/` provide client compatibility; `.agents/plugins/marketplace.json` makes the repository installable as a Codex marketplace. Both clients use the same `skills/`. Skill MCP dependencies follow [OpenAI's skill guidance](https://developers.openai.com/plugins/build/skills). The server repository hosts `public/marketplace.json` as a compatibility copy of this repository’s canonical Claude marketplace. Privacy and terms pages are also hosted by the server.
 
 ```sh
 bun install --frozen-lockfile

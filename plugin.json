@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "description": "Curated research, FRED macroeconomic data, and SEC company financials with source provenance.",
   "author": {
-    "name": "STAR MODE",
+    "name": "Scout Smith LLC",
     "url": "https://github.com/starmode-base"
   },
   "homepage": "https://expert-system.starmode.dev",
@@ -16,7 +16,7 @@
         "displayName": "Expert System",
         "shortDescription": "Research, macro data, and company financials",
         "longDescription": "Curated research, FRED macroeconomic data, and SEC company financials with source provenance.",
-        "developerName": "STAR MODE",
+        "developerName": "Scout Smith LLC",
         "category": "Productivity",
         "websiteURL": "https://expert-system.starmode.dev",
         "defaultPrompt": [
