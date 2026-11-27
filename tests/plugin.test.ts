@@ -7,7 +7,7 @@ import { z } from "zod";
 const root = resolve(import.meta.dirname, "..");
 const read = (path: string) => readFileSync(resolve(root, path), "utf8");
 const json = (path: string): unknown => JSON.parse(read(path));
-const endpoint = "https://expert-system.starmode.dev/api/mcp";
+const endpoint = "https://expert-system.spencer-smith.io/api/mcp";
 const identity = z.object({
   name: z.literal("expert-system"),
   version: z.literal("2.0.0"),
@@ -31,9 +31,11 @@ const presentation = z.object({
   capabilities: z.array(z.literal("Read")),
   websiteURL: z.url(),
   privacyPolicyURL: z.literal(
-    "https://expert-system.starmode.dev/privacy.html",
+    "https://expert-system.spencer-smith.io/privacy.html",
   ),
-  termsOfServiceURL: z.literal("https://expert-system.starmode.dev/terms.html"),
+  termsOfServiceURL: z.literal(
+    "https://expert-system.spencer-smith.io/terms.html",
+  ),
   defaultPrompt: z.array(z.string().max(128)).max(3),
 });
 const portable = identity

@@ -7,7 +7,7 @@
     "name": "STARMODE",
     "url": "https://www.starmode.dev/"
   },
-  "homepage": "https://expert-system.starmode.dev",
+  "homepage": "https://expert-system.spencer-smith.io",
   "repository": "https://github.com/starmode-base/expert-system-plugin",
   "keywords": ["research", "macroeconomics", "financials", "fred", "sec"],
   "extensions": {
@@ -18,15 +18,15 @@
         "longDescription": "Curated research, FRED macroeconomic data, and SEC company financials with source provenance.",
         "developerName": "STARMODE",
         "category": "Productivity",
-        "websiteURL": "https://expert-system.starmode.dev",
+        "websiteURL": "https://expert-system.spencer-smith.io",
         "defaultPrompt": [
           "Find recent research about AI infrastructure.",
           "Show the latest US inflation observations.",
           "Compare Apple revenue and operating cash flow."
         ],
         "capabilities": ["Read"],
-        "privacyPolicyURL": "https://expert-system.starmode.dev/privacy.html",
-        "termsOfServiceURL": "https://expert-system.starmode.dev/terms.html"
+        "privacyPolicyURL": "https://expert-system.spencer-smith.io/privacy.html",
+        "termsOfServiceURL": "https://expert-system.spencer-smith.io/terms.html"
       }
     }
   }

@@ -3,7 +3,7 @@
   "mcpServers": {
     "expert-system": {
       "type": "streamable-http",
-      "url": "https://expert-system.starmode.dev/api/mcp"
+      "url": "https://expert-system.spencer-smith.io/api/mcp"
     }
   }
 }

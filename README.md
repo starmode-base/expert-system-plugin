@@ -2,7 +2,7 @@
 
 Research intelligence, FRED macroeconomic observations, and normalized SEC company financials for Claude Code and Codex. Version **2.0.0** uses OAuth and one shared set of skills.
 
-Service: [expert-system.starmode.dev](https://expert-system.starmode.dev) · [Support](https://github.com/starmode-base/expert-system-plugin/issues) · [Privacy](https://expert-system.starmode.dev/privacy.html) · [Terms](https://expert-system.starmode.dev/terms.html)
+Service: [expert-system.spencer-smith.io](https://expert-system.spencer-smith.io) · [Support](https://github.com/starmode-base/expert-system-plugin/issues) · [Privacy](https://expert-system.spencer-smith.io/privacy.html) · [Terms](https://expert-system.spencer-smith.io/terms.html)
 
 ## Capabilities
 
@@ -44,7 +44,7 @@ To update, refresh the marketplace with `codex plugin marketplace upgrade expert
 
 ## Sign-in and troubleshooting
 
-The shared MCP endpoint is `https://expert-system.starmode.dev/api/mcp`. Sign in through the client's connection controls; credentials belong to the client, never plugin files or prompts. The server requests `expert-system:read`. Cancelling sign-in leaves the connection unavailable; retry when ready. An expired or revoked session may require reconnecting. For access denied, verify your account and authorization rather than repeatedly retrying tools.
+The shared MCP endpoint is `https://expert-system.spencer-smith.io/api/mcp`. Sign in through the client's connection controls; credentials belong to the client, never plugin files or prompts. The server requests `expert-system:read`. Cancelling sign-in leaves the connection unavailable; retry when ready. An expired or revoked session may require reconnecting. For access denied, verify your account and authorization rather than repeatedly retrying tools.
 
 In Claude Code use `/mcp`; in Codex inspect `/mcp` and the plugin's connection settings. If tools are missing, confirm installation, enable the plugin, reconnect, and start a fresh task. Remove duplicate manually configured Expert System connections if they cause duplicate tools. A quota error requires waiting for renewal or managing your plan, not reinstalling. Report client version and redacted error details through Support; never post tokens or personal data.
 
