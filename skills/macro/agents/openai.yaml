@@ -8,6 +8,6 @@ dependencies:
       value: "expert-system"
       description: "Expert System research, macroeconomic data, and financials"
       transport: "streamable_http"
-      url: "https://expert-system.starmode.dev/api/mcp"
+      url: "https://expert-system.spencer-smith.io/api/mcp"
 policy:
   allow_implicit_invocation: true

@@ -6,7 +6,7 @@
     "name": "STARMODE",
     "url": "https://www.starmode.dev/"
   },
-  "homepage": "https://expert-system.starmode.dev",
+  "homepage": "https://expert-system.spencer-smith.io",
   "repository": "https://github.com/starmode-base/expert-system-plugin",
   "keywords": ["research", "macroeconomics", "financials", "fred", "sec"],
   "skills": "./skills/"

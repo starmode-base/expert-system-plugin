@@ -1,9 +1,24 @@
 # Expert System plugin 2.0.0 release
 
+## Domain cutover preparation (2026-11-27)
+
+This change updates the plugin endpoint, policy URLs, and installation examples
+to `https://expert-system.spencer-smith.io`. The earlier production OAuth
+verification recorded below applies to the previous origin, not proof of the new
+origin's authorization flow.
+
+Roll out the matching server change and provision the new Auth0 MCP audience
+before publishing this plugin configuration. Keep the existing domain and Auth0
+API available during transition. New-host browser sessions require sign-in, and
+MCP clients must reconnect and authorize the new resource; an old-audience token
+must not be accepted for the new audience. Verify discovery, consent, a real
+`get_profile` call, and refresh before removing the old configuration. The
+server-side cutover runbook is `documentation/AUTH0.md` in `expert-system`.
+
 ## Contract and implementation status
 
 - Plugin and MCP server name: `expert-system`.
-- Production endpoint: `https://expert-system.starmode.dev/api/mcp`.
+- Production endpoint: `https://expert-system.spencer-smith.io/api/mcp`.
 - Release target: `2.0.0`. Root portable manifests plus Claude and Codex overlays share the three skills.
 - OAuth server gate: production discovery, unauthenticated challenge, and authenticated Codex MCP calls have been verified. Claude's first-login flow still needs an account sign-in to complete.
 - Supported data surface: `search_takeaways`, `get_recent_takeaways`, `get_takeaways`, `get_documents`, `get_document_content`, `list_macro_series`, `get_macro_observations`, `list_financial_metrics`, `list_company_financial_metrics`, `get_company_financial_metric`, `get_company_financials`. `get_profile` is an additional free account utility.
